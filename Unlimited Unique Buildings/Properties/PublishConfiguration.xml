@@ -1,0 +1,37 @@
+﻿<Publish>
+	<!--Id must be set in order to update existed mod. it is not required for publishing mod for the first time-->
+	<ModId Value="88488" />
+	<!--Name of the mod to display to players-->
+	<DisplayName Value="Unlimited Unique Buildings" />
+	<!--Short description of the mod-->
+	<ShortDescription Value="Place as many unique buildings as you want" />
+	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
+	<!--LongDescription Value="This is a long description" /-->
+	<LongDescription>
+ - Place as many unique buildings as you want without using find it.
+ - This mod works for any building in game. This includes signature and non-signature buildings. If a building is unique, it will be marked as not unique. 
+	</LongDescription>
+	<!--Thumbnail-->
+  <Thumbnail Value="ParadoxRes/Thumbnail.png" />
+  <!--Screenshot, can be set multiple times-->
+  <Screenshot Value="ParadoxRes/Screenshot1.png" />
+  <Screenshot Value="ParadoxRes/Screenshot2.png" />
+  <Screenshot Value="ParadoxRes/Screenshot3.png" />
+	<!--Tag, can be set multiple times-->
+	<Tag Value="Code Mod" />
+	<!--Link to the forum post where the mod can be discussed-->
+	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/unlimited-unique-buildings.1700839/" />
+	<!--Version of the mod-->
+	<ModVersion Value="1.0.1" />
+	<!--Recommended version of the base game to use the mod-->
+  <GameVersion Value="1.1.*" />
+	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
+  <ChangeLog>
+# 1.0.1
+ - Added forum link
+  </ChangeLog>
+	<!--ChangeLog>
+	</ChangeLog-->
+	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
+  <ExternalLink Type="github" Url="https://github.com/rodrigmatrix/unlimited_unique_buildings" />
+</Publish>

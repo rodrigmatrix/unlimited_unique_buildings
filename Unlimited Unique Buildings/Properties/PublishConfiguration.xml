@@ -22,13 +22,13 @@
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/unlimited-unique-buildings.1700839/" />
 	<!--Version of the mod-->
-	<ModVersion Value="1.0.1" />
+	<ModVersion Value="1.0.2" />
 	<!--Recommended version of the base game to use the mod-->
   <GameVersion Value="1.1.*" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
   <ChangeLog>
-# 1.0.1
- - Added forum link
+# 1.0.2
+ - Updating logic to improve performance
   </ChangeLog>
 	<!--ChangeLog>
 	</ChangeLog-->

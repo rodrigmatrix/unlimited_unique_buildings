@@ -3,7 +3,10 @@
 using Game.Prefabs;
 using Game;
 using Unity.Collections;
+using Colossal.Serialization.Entities;
 using Unity.Entities;
+using Colossal.Logging;
+using System;
 
 namespace UnlimitedUniqueBuildings
 {
@@ -13,36 +16,45 @@ namespace UnlimitedUniqueBuildings
 
         private EntityQuery _query;
 
+        public static ILog log = LogManager.GetLogger($"{nameof(UnlimitedUniqueBuildings)}.{nameof(Mod)}").SetShowsErrorsInUI(false);
+
         protected override void OnCreate()
         {
             base.OnCreate();
+        }
 
-            _query = GetEntityQuery(new EntityQueryDesc()
+        protected override void OnGameLoadingComplete(Purpose purpose, GameMode mode)
+        {
+            try
             {
-                All = [
-                    ComponentType.ReadWrite<PlaceableObjectData>()
-                ]
-            });
+                _query = GetEntityQuery(new EntityQueryDesc()
+                {
+                    All = [
+                        ComponentType.ReadWrite<PlaceableObjectData>()
+                    ]
+                });
+                var buildings = _query.ToEntityArray(Allocator.Temp);
 
-            RequireForUpdate(_query);
+                foreach (var building in buildings)
+                {
+                    PlaceableObjectData data;
+
+                    if (!_placebleData.TryGetValue(building, out data))
+                    {
+                        data = EntityManager.GetComponentData<PlaceableObjectData>(building);
+                        _placebleData.Add(building, data);
+                    }
+                    data.m_Flags &= ~Game.Objects.PlacementFlags.Unique;
+                    EntityManager.SetComponentData(building, data);
+                }
+            } catch(Exception e)
+            {
+                log.Warn($"Error updating Unlimited Unique Buildings " + e);
+            }
         }
 
         protected override void OnUpdate()
         {
-            var buildings = _query.ToEntityArray(Allocator.Temp);
-
-            foreach (var building in buildings)
-            {
-                PlaceableObjectData data;
-
-                if (!_placebleData.TryGetValue(building, out data))
-                {
-                    data = EntityManager.GetComponentData<PlaceableObjectData>(building);
-                    _placebleData.Add(building, data);
-                }
-                data.m_Flags &= ~Game.Objects.PlacementFlags.Unique;
-                EntityManager.SetComponentData(building, data);
-            }
         }
     }
 }
